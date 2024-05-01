@@ -12,7 +12,7 @@ const client = new twilio(accountSid, authToken);
 
 client.calls.create(
   {
-    url: "https://twilio-call.onrender.com", // URL to fetch TwiML instructions
+    url: "https://poc-calls.onrender.com", // URL to fetch TwiML instructions
     to: "+573245896504", // Replace with the agent's phone number
     from: "+14237994134", // Replace with your Twilio phone number
   },
