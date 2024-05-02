@@ -16,7 +16,7 @@ app.use(
 const accountSid = process.env.ACCOUNT_ID;
 const authToken = process.env.AUTH_TOKEN;
 const client = new twilio(accountSid, authToken);
-let customer;
+let customer = {};
 
 app.post("/callAgent", (req, res) => {
   customer = req.body;
@@ -57,6 +57,7 @@ app.post("/callAgent", (req, res) => {
 
 // Endpoint Twilio will request when the agent answers
 app.post("/agentAnswered", (req, res) => {
+  console.log(req.body, "request from twilio number");
   console.log("request after agent response", customer.userPhone);
   const twiml = new twilio.twiml.VoiceResponse();
   twiml.dial(`+57${customer.userPhone}`); // Connect to the second phone number custumers
