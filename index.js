@@ -11,6 +11,7 @@ app.use(
     origin: "https://www.clinicanaturlich.com",
   })
 );
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const accountSid = process.env.ACCOUNT_ID;
 const authToken = process.env.AUTH_TOKEN;
