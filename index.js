@@ -1,9 +1,15 @@
 const express = require("express");
 const twilio = require("twilio");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
+app.use(
+  cors({
+    origin: "https://www.clinicanaturlich.com",
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const accountSid = process.env.ACCOUNT_ID;
