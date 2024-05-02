@@ -7,11 +7,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(express.json()); // para poder parsear JSON
-app.use(
-  cors({
-    origin: "https://www.clinicanaturlich.com",
-  })
-);
+app.use(cors());
 
 const accountSid = process.env.ACCOUNT_ID;
 const authToken = process.env.AUTH_TOKEN;
@@ -60,7 +56,7 @@ app.post("/agentAnswered", (req, res) => {
   console.log(req.body, "request from twilio number");
   console.log("request after agent response", customer.userPhone);
   const twiml = new twilio.twiml.VoiceResponse();
-  twiml.dial(`+57${customer.userPhone}`); // Connect to the second phone number custumers
+  twiml.dial(`+573165333474`); // Connect to the second phone number custumers
   res.type("text/xml");
   res.send(twiml.toString());
 });
