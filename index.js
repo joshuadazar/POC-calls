@@ -19,14 +19,13 @@ const client = new twilio(accountSid, authToken);
 let customer;
 
 app.post("/callAgent", (req, res) => {
-  console.log(req.body); // imprime lo que se envió en la petición
   customer = req.body;
   console.log(customer);
 
   client.calls.create(
     {
       url: "https://poc-calls.onrender.com/agentAnswered", // URL to fetch TwiML instructions
-      to: `+57${customer.userPhone}`, // Replace with the agent's phone number
+      to: `+57${process.env.AGENT_PHONE}`, // Replace with the agent's phone number
       from: "+14237994134", // Replace with your Twilio phone number
     },
     (err, call) => {
@@ -60,7 +59,7 @@ app.post("/callAgent", (req, res) => {
 app.post("/agentAnswered", (req, res) => {
   console.log("request after agent response");
   const twiml = new twilio.twiml.VoiceResponse();
-  twiml.dial("+573042919693"); // Connect to the second phone number custumers
+  twiml.dial(`+57${customer.userPhone}`); // Connect to the second phone number custumers
   res.type("text/xml");
   res.send(twiml.toString());
 });
