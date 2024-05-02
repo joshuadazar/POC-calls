@@ -6,12 +6,12 @@ require("dotenv").config();
 
 const app = express();
 
+app.use(express.json()); // para poder parsear JSON
 app.use(
   cors({
     origin: "https://www.clinicanaturlich.com",
   })
 );
-app.use(express.json()); // para poder parsear JSON
 
 const accountSid = process.env.ACCOUNT_ID;
 const authToken = process.env.AUTH_TOKEN;
