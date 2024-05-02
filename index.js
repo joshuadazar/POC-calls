@@ -25,7 +25,7 @@ app.post("/callAgent", (req, res) => {
   client.calls.create(
     {
       url: "https://poc-calls.onrender.com/agentAnswered", // URL to fetch TwiML instructions
-      to: `+57${process.env.AGENT_PHONE}`, // Replace with the agent's phone number
+      to: `+573245896504`, // Replace with the agent's phone number
       from: "+14237994134", // Replace with your Twilio phone number
     },
     (err, call) => {
@@ -57,7 +57,7 @@ app.post("/callAgent", (req, res) => {
 
 // Endpoint Twilio will request when the agent answers
 app.post("/agentAnswered", (req, res) => {
-  console.log("request after agent response");
+  console.log("request after agent response", customer.userPhone);
   const twiml = new twilio.twiml.VoiceResponse();
   twiml.dial(`+57${customer.userPhone}`); // Connect to the second phone number custumers
   res.type("text/xml");
