@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
 
-app.use(express.json()); // para poder parsear JSON
 const app = express();
+app.use(express.json()); // para poder parsear JSON
 app.use(
   cors({
     origin: "https://www.clinicanaturlich.com",
